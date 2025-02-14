@@ -87,12 +87,17 @@ module.exports.login =tryCatch(async(req,resp,next)=>{
       const token= jwt.sign(payload,process.env.JWT_SECRET,{
         expiresIn:"30d"
       })
-    
+    // delete foundUser.password
+    // delete foundUser.createdAt
+    // delete foundUser.updatedAt
+    const {password:pw ,createAt,updateAt,...userData} = foundUser
+
+
     resp.json({msg:'Login success',token:token,user:foundUser})
    
     })
 
 //------------------------------------------------------------------------------
 module.exports.getMe =(req,resp)=>{
-    resp.json({msg:'Getme...'})
+    resp.json({user : req.user})
 }
