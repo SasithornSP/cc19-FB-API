@@ -74,13 +74,14 @@ module.exports.login =tryCatch(async(req,resp,next)=>{
       const foundUser =await prisma.user.findUnique({
         where:{[identityKey]:identity}
       })
+      
       if(!foundUser){
-        createError(401,'Invalid Login')
+        createError(401,'Invalid Login1')
       }
       //check password
       let pwOk =await bcrypt.compare(password,foundUser.password)
       if(!pwOk){
-        createError(401,'Invalid Login')
+        createError(401,'Invalid Login2')
       }
       //create jwt token
       const payload = {id: foundUser.id}

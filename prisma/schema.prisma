@@ -58,9 +58,9 @@ model Comment {
 
 model Like {
   userId    Int
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id],onDelete: Cascade)
   postId    Int
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id],onDelete: Cascade)
   createdAt DateTime @default(now()) @db.Timestamp(0)
 
   @@id([userId, postId])
@@ -78,7 +78,7 @@ model Relationship {
   updatedAt  DateTime           @updatedAt @db.Timestamp(0)
   senderId   Int
   receiverId Int
-  sender     User               @relation(name: "sender", fields: [senderId], references: [id])
-  receiver   User               @relation(name: "receiver", fields: [receiverId], references: [id])
+  sender     User               @relation(name: "sender", fields: [senderId], references: [id],onDelete: Cascade)
+  receiver   User               @relation(name: "receiver", fields: [receiverId], references: [id],onDelete: Cascade)
   
 }
