@@ -23,7 +23,8 @@ function checkEmailorMobile(identity){
 
 module.exports.register =async(req,resp,next)=>{
 try {
-    const { identity, firstname, lastname, password, confirmPassword }=req.body
+    const { identity, firstname, lastname, password, confirmPassword }= req.body
+    console.log('req.body', req.body)
     //validation
     if(!identity.trim() || !firstname.trim() || !lastname.trim() || !password.trim() || !confirmPassword.trim()){
         return createError(400,'Plese fill all data')

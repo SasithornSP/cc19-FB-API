@@ -4,9 +4,17 @@ const notFound = require('./middlewares/notFound')
 const errorMiddleware = require('./middlewares/errorMiddleware')
 const authRoute = require('./routes/auth-route')
 const app =express()
+const cors =require('cors')
+const morgan=require('morgan')
+const helmet=require('helmet')
 
+// app.use(cors({
+//     origin:'http://localhost:5173'}))
 
 app.use(express.json())
+app.use(cors())
+app.use(morgan('dev'))
+app.use(helmet())
 //rotes
 // app.use("/",(req,resp)=>{})
 app.use("/auth",authRoute)
