@@ -7,6 +7,7 @@ const prisma = require("../models")
 //ตรวจToken ว่าใช่คนเดียวกันไหม
 module.exports =tryCatch(async(req,resp,next)=>{
     const authorization =req.headers.authorization
+    console.log('authorization', authorization)
     if(!authorization || !authorization.startsWith('Bearer ')){
        createError(401,'Unauthorized1')
     }

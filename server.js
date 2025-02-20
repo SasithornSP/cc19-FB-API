@@ -7,6 +7,9 @@ const app =express()
 const cors =require('cors')
 const morgan=require('morgan')
 const helmet=require('helmet')
+const postRoute =require("./routes/post-route")
+const authenticate = require('./middlewares/authenticate')
+
 
 // app.use(cors({
 //     origin:'http://localhost:5173'}))
@@ -18,7 +21,7 @@ app.use(helmet())
 //rotes
 // app.use("/",(req,resp)=>{})
 app.use("/auth",authRoute)
-app.use("/post",(req,resp)=>{resp.send('post service')})
+app.use("/post",authenticate,postRoute)
 app.use("/comment",(req,resp)=>{resp.send('comment service')})
 app.use("/like",(req,resp)=>{resp.send('like service')})
 
