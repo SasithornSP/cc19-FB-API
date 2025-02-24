@@ -9,6 +9,8 @@ const morgan=require('morgan')
 const helmet=require('helmet')
 const postRoute =require("./routes/post-route")
 const authenticate = require('./middlewares/authenticate')
+const commentRoute = require('./routes/comment-route')
+const likeRoute = require('./routes/like-route')
 
 
 // app.use(cors({
@@ -22,8 +24,8 @@ app.use(helmet())
 // app.use("/",(req,resp)=>{})
 app.use("/auth",authRoute)
 app.use("/post",authenticate,postRoute)
-app.use("/comment",(req,resp)=>{resp.send('comment service')})
-app.use("/like",(req,resp)=>{resp.send('like service')})
+app.use("/comment",authenticate,commentRoute)
+app.use("/like",authenticate,likeRoute)
 
 //notfound
 app.use(notFound)
